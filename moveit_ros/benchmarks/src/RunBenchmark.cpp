@@ -57,5 +57,9 @@ int main(int argc, char** argv)
 
   // Running benchmarks
   if (!server.runBenchmarks(opts))
+  {
     ROS_ERROR("Failed to run all benchmarks");
+    return 1;
+  }
+  return 0;
 }
