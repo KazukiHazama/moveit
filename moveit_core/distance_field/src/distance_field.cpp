@@ -209,6 +209,11 @@ bool DistanceField::getShapePoints(const shapes::Shape* shape, const Eigen::Affi
   else
   {
     bodies::Body* body = bodies::createBodyFromShape(shape);
+    if (!body)
+    {
+      ROS_ERROR_NAMED("distance_field", "createBodyFromShape() returned a null pointer");
+      return false;
+    }
     body->setPose(pose);
     findInternalPointsConvex(*body, resolution_, *points);
     delete body;
@@ -293,6 +298,11 @@ void DistanceField::moveShapeInField(const shapes::Shape* shape, const Eigen::Af
     return;
   }
   bodies::Body* body = bodies::createBodyFromShape(shape);
+  if (!body)
+  {
+    ROS_ERROR_NAMED("distance_field", "createBodyFromShape() returned a null pointer");
+    return;
+  }
   body->setPose(old_pose);
   EigenSTL::vector_Vector3d old_point_vec;
   findInternalPointsConvex(*body, resolution_, old_point_vec);
@@ -316,6 +326,11 @@ void DistanceField::moveShapeInField(const shapes::Shape* shape, const geometry_
 void DistanceField::removeShapeFromField(const shapes::Shape* shape, const Eigen::Affine3d& pose)
 {
   bodies::Body* body = bodies::createBodyFromShape(shape);
+  if (!body)
+  {
+    ROS_ERROR_NAMED("distance_field", "createBodyFromShape() returned a null pointer");
+    return;
+  }
   body->setPose(pose);
   EigenSTL::vector_Vector3d point_vec;
   findInternalPointsConvex(*body, resolution_, point_vec);
