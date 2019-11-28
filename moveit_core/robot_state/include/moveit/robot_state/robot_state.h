@@ -548,7 +548,9 @@ public:
 
   void setJointPositions(const std::string& joint_name, const Eigen::Affine3d& transform)
   {
-    setJointPositions(robot_model_->getJointModel(joint_name), transform);
+    const JointModel* jm = robot_model_->getJointModel(joint_name);
+    if(jm)
+      setJointPositions(jm, transform);
   }
 
   void setJointPositions(const JointModel* joint, const Eigen::Affine3d& transform)
