@@ -748,7 +748,7 @@ bool PropagationDistanceField::readFromStream(std::istream& is)
     {
       for (unsigned int z = 0; z < static_cast<unsigned int>(getZNumCells()); z += 8)
       {
-        char inchar;
+        char inchar = 0;
         if (!in.good())
         {
           return false;
