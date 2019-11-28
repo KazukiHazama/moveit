@@ -221,9 +221,14 @@ bool collision_detection::getCollisionSphereCollision(const distance_field::Dist
                                                       const std::vector<CollisionSphere>& sphere_list,
                                                       const EigenSTL::vector_Vector3d& sphere_centers,
                                                       double maximum_value, double tolerance, unsigned int num_coll,
-                                                      std::vector<unsigned int>& colls)
+                                                      std::vector<unsigned int>& colls,
+                                                      std::vector<double>* depths)
 {
   colls.clear();
+  if (depths)
+  {
+    depths->clear();
+  }
   for (unsigned int i = 0; i < sphere_list.size(); i++)
   {
     Eigen::Vector3d p = sphere_centers[i];
@@ -243,6 +248,10 @@ bool collision_detection::getCollisionSphereCollision(const distance_field::Dist
       }
 
       colls.push_back(i);
+      if (depths)
+      {
+        depths->push_back(sphere_list[i].radius_ - dist - tolerance);
+      }
       if (colls.size() >= num_coll)
       {
         return true;
