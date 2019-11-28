@@ -131,7 +131,7 @@ int main(int argc, char** argv)
   std::string host;
 
   int port;
-  float connection_timeout;
+  float connection_timeout = 0.0;
   int connection_retries;
 
   node.param<std::string>("warehouse_host", host, "localhost");

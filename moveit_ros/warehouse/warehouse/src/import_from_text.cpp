@@ -65,7 +65,7 @@ void parseStart(std::istream& in, planning_scene_monitor::PlanningSceneMonitor* 
       {
         std::string joint;
         std::string marker;
-        double value;
+        double value = 0.0;
         in >> joint;
         while (joint != "." && in.good() && !in.eof())
         {
