@@ -291,6 +291,7 @@ void RobotInteraction::decideActiveEndEffectors(const std::string& group, Intera
         ee.parent_link = eef[i].parent_link_;
         ee.eef_group = eef[i].component_group_;
         ee.interaction = style;
+        ee.size = 0.0;
         active_eef_.push_back(ee);
       }
 
@@ -302,6 +303,7 @@ void RobotInteraction::decideActiveEndEffectors(const std::string& group, Intera
       ee.parent_link = jmg->getLinkModelNames().back();
       ee.eef_group = group;
       ee.interaction = style;
+      ee.size = 0.0;
       active_eef_.push_back(ee);
     }
   }
@@ -321,6 +323,7 @@ void RobotInteraction::decideActiveEndEffectors(const std::string& group, Intera
           ee.parent_link = eef[i].parent_link_;
           ee.eef_group = eef[i].component_group_;
           ee.interaction = style;
+          ee.size = 0.0;
           active_eef_.push_back(ee);
           break;
         }
