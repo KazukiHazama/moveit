@@ -228,7 +228,10 @@ bool KDLKinematicsPlugin::initialize(const std::string& robot_description, const
   for (std::size_t i = 0; i < kdl_chain_.getNrOfSegments(); ++i)
   {
     const robot_model::JointModel* jm = robot_model_->getJointModel(kdl_chain_.segments[i].getJoint().getName());
-
+    if (jm == nullptr)
+    {
+      continue;
+    }
     // first check whether it belongs to the set of active joints in the group
     if (jm->getMimic() == NULL && jm->getVariableCount() > 0)
     {
@@ -258,8 +261,16 @@ bool KDLKinematicsPlugin::initialize(const std::string& robot_description, const
   {
     if (!mimic_joints[i].active)
     {
-      const robot_model::JointModel* joint_model =
-          joint_model_group->getJointModel(mimic_joints[i].joint_name)->getMimic();
+      const robot_model::JointModel* joint_model = joint_model_group->getJointModel(mimic_joints[i].joint_name);
+      if (joint_model == nullptr)
+      {
+        continue;
+      }
+      joint_model = joint_model->getMimic();
+      if (joint_model == nullptr)
+      {
+        continue;
+      }
       for (std::size_t j = 0; j < mimic_joints.size(); ++j)
       {
         if (mimic_joints[j].joint_name == joint_model->getName())
