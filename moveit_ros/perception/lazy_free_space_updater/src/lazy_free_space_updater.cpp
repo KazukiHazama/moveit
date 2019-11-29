@@ -121,6 +121,21 @@ void LazyFreeSpaceUpdater::processThread()
     if (!running_)
       break;
 
+    if (!process_occupied_cells_set_ || !process_model_cells_set_)
+    {
+      if(!process_occupied_cells_set_)
+      {
+        delete process_occupied_cells_set_;
+        process_occupied_cells_set_ = NULL;
+      }
+      if(!process_model_cells_set_)
+      {
+        delete process_model_cells_set_;
+        process_model_cells_set_ = NULL;
+      }
+      continue;
+    }
+
     ROS_DEBUG("Begin processing batched update: marking free cells due to %lu occupied cells and %lu model cells",
               (long unsigned int)process_occupied_cells_set_->size(),
               (long unsigned int)process_model_cells_set_->size());
