@@ -260,8 +260,7 @@ bool LMAKinematicsPlugin::initialize(const std::string& robot_description, const
   {
     if (!mimic_joints[i].active)
     {
-      const robot_model::JointModel* joint_model =
-          joint_model_group->getJointModel(mimic_joints[i].joint_name);
+      const robot_model::JointModel* joint_model = joint_model_group->getJointModel(mimic_joints[i].joint_name);
       if (joint_model == nullptr)
       {
         continue;
