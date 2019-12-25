@@ -294,10 +294,16 @@ void collision_detection::BodyDecomposition::init(const std::vector<shapes::Shap
     body_spheres.clear();
     body_collision_points.clear();
 
-    body_spheres = determineCollisionSpheres(bodies_.getBody(i), relative_cylinder_pose_);
+    const bodies::Body* body = bodies_.getBody(i);
+    if (!body)
+    {
+      ROS_WARN_NAMED("collision_distance_field", "Null pointer in bodies_");
+      continue;
+    }
+    body_spheres = determineCollisionSpheres(body, relative_cylinder_pose_);
     collision_spheres_.insert(collision_spheres_.end(), body_spheres.begin(), body_spheres.end());
 
-    distance_field::findInternalPointsConvex(*bodies_.getBody(i), resolution, body_collision_points);
+    distance_field::findInternalPointsConvex(*body, resolution, body_collision_points);
     relative_collision_points_.insert(relative_collision_points_.end(), body_collision_points.begin(),
                                       body_collision_points.end());
   }
@@ -312,7 +318,13 @@ void collision_detection::BodyDecomposition::init(const std::vector<shapes::Shap
   std::vector<bodies::BoundingSphere> bounding_spheres(bodies_.getCount());
   for (unsigned int i = 0; i < bodies_.getCount(); i++)
   {
-    bodies_.getBody(i)->computeBoundingSphere(bounding_spheres[i]);
+    const bodies::Body* body = bodies_.getBody(i);
+    if (!body)
+    {
+      ROS_WARN_NAMED("collision_distance_field", "Null pointer in bodies_");
+      continue;
+    }
+    body->computeBoundingSphere(bounding_spheres[i]);
   }
   bodies::mergeBoundingSpheres(bounding_spheres, relative_bounding_sphere_);
 
