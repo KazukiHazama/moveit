@@ -235,10 +235,14 @@ void RobotState::setToRandomPositions(const JointModelGroup* group)
   // we do not make calls to RobotModel for random number generation because mimic joints
   // could trigger updates outside the state of the group itself
   random_numbers::RandomNumberGenerator& rng = getRandomNumberGenerator();
+  if (group == NULL)
+    return;
   setToRandomPositions(group, rng);
 }
 void RobotState::setToRandomPositions(const JointModelGroup* group, random_numbers::RandomNumberGenerator& rng)
 {
+  if (group == nullptr)
+    return;
   const std::vector<const JointModel*>& joints = group->getActiveJointModels();
   for (std::size_t i = 0; i < joints.size(); ++i)
     joints[i]->getVariableRandomPositions(rng, position_ + joints[i]->getFirstVariableIndex());
@@ -1418,6 +1422,11 @@ bool RobotState::setFromIK(const JointModelGroup* jmg, const EigenSTL::vector_Af
     ROS_ERROR_NAMED(LOGNAME, "Number of poses must be the same as number of tips");
     return false;
   }
+  if (jmg == nullptr)
+  {
+    ROS_ERROR_NAMED(LOGNAME, "JointModelGroup is none");
+    return false;
+  }
 
   // Load solver
   const kinematics::KinematicsBaseConstPtr& solver = jmg->getSolverInstance();
@@ -1510,9 +1519,9 @@ bool RobotState::setFromIK(const JointModelGroup* jmg, const EigenSTL::vector_Af
 
       if (pose_frame != solver_tip_frame)
       {
-        if (hasAttachedBody(pose_frame))
+        const AttachedBody* ab = getAttachedBody(pose_frame);
+        if (ab != nullptr)
         {
-          const AttachedBody* ab = getAttachedBody(pose_frame);
           const EigenSTL::vector_Affine3d& ab_trans = ab->getFixedTransforms();
           if (ab_trans.size() != 1)
           {
@@ -1755,9 +1764,9 @@ bool RobotState::setFromIKSubgroups(const JointModelGroup* jmg, const EigenSTL::
 
     if (pose_frame != solver_tip_frame)
     {
-      if (hasAttachedBody(pose_frame))
+      const AttachedBody* ab = getAttachedBody(pose_frame);
+      if (ab != nullptr)
       {
-        const AttachedBody* ab = getAttachedBody(pose_frame);
         const EigenSTL::vector_Affine3d& ab_trans = ab->getFixedTransforms();
         if (ab_trans.size() != 1)
         {

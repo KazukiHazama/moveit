@@ -553,9 +553,12 @@ public:
 
   void setJointPositions(const JointModel* joint, const Eigen::Affine3d& transform)
   {
-    joint->computeVariablePositions(transform, position_ + joint->getFirstVariableIndex());
-    markDirtyJointTransforms(joint);
-    updateMimicJoint(joint);
+    if (joint != nullptr)
+    {
+      joint->computeVariablePositions(transform, position_ + joint->getFirstVariableIndex());
+      markDirtyJointTransforms(joint);
+      updateMimicJoint(joint);
+    }
   }
 
   void setJointVelocities(const JointModel* joint, const double* velocity)
@@ -573,6 +576,11 @@ public:
 
   const double* getJointPositions(const JointModel* joint) const
   {
+    if (joint == nullptr)
+    {
+      assert(joint);
+      return position_;
+    }
     return position_ + joint->getFirstVariableIndex();
   }
 
