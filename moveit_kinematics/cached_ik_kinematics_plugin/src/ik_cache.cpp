@@ -43,11 +43,7 @@
 
 namespace cached_ik_kinematics_plugin
 {
-IKCache::IKCache() :
-    num_joints_(0)
-  , min_pose_distance_(0)
-  , min_config_distance2_(0)
-  , max_cache_size_(0)
+IKCache::IKCache() : num_joints_(0), min_pose_distance_(0), min_config_distance2_(0), max_cache_size_(0)
 {
   // set distance function for nearest-neighbor queries
   ik_nn_.setDistanceFunction([this](const IKEntry* entry1, const IKEntry* entry2) {
