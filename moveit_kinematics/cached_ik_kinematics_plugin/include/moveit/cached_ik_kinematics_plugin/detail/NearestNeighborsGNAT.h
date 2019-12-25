@@ -101,10 +101,12 @@ public:
                        unsigned int maxNumPtsPerLeaf = 50, unsigned int removedCacheSize = 500,
                        bool rebalancing = false)
     : NearestNeighbors<_T>()
+    , tree_(nullptr)
     , degree_(degree)
     , minDegree_(std::min(degree, minDegree))
     , maxDegree_(std::max(maxDegree, degree))
     , maxNumPtsPerLeaf_(maxNumPtsPerLeaf)
+    , size_(0)
     , rebuildSize_(rebalancing ? maxNumPtsPerLeaf * degree : std::numeric_limits<std::size_t>::max())
     , removedCacheSize_(removedCacheSize)
   {
