@@ -47,8 +47,8 @@ int main(int argc, char* argv[])
 {
   std::string group;
   std::string tip;
-  unsigned int num;
-  bool reset_to_default;
+  unsigned int num = 100000;
+  bool reset_to_default = true;
   po::options_description desc("Options");
   desc.add_options()("help", "show help message")("group", po::value<std::string>(&group)->default_value("all"),
                                                   "name of planning group")(
