@@ -52,7 +52,14 @@ CLASS_LOADER_REGISTER_CLASS(kdl_kinematics_plugin::KDLKinematicsPlugin, kinemati
 
 namespace kdl_kinematics_plugin
 {
-KDLKinematicsPlugin::KDLKinematicsPlugin() : active_(false)
+KDLKinematicsPlugin::KDLKinematicsPlugin()
+  : active_(false)
+  , dimension_(0)
+  , num_possible_redundant_joints_(0)
+  , position_ik_(false)
+  , joint_model_group_(nullptr)
+  , max_solver_iterations_(500.0)
+  , epsilon_(1e-5)
 {
 }
 
