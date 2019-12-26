@@ -209,7 +209,10 @@ public:
    * @param [in] model The kinematic model used for constraint evaluation
    */
   JointConstraint(const robot_model::RobotModelConstPtr& model)
-    : KinematicConstraint(model), joint_model_(NULL), joint_variable_index_(-1)
+    : KinematicConstraint(model), joint_model_(NULL)
+    , joint_is_continuous_(false)
+    , joint_variable_index_(-1)
+    , joint_position_(0.0), joint_tolerance_above_(0.0), joint_tolerance_below_(0.0)
   {
     type_ = JOINT_CONSTRAINT;
   }
@@ -357,6 +360,10 @@ public:
    * @param [in] model The kinematic model used for constraint evaluation
    */
   OrientationConstraint(const robot_model::RobotModelConstPtr& model) : KinematicConstraint(model), link_model_(NULL)
+    , mobile_frame_(false)
+    , absolute_x_axis_tolerance_(0.0)
+    , absolute_y_axis_tolerance_(0.0)
+    , absolute_z_axis_tolerance_(0.0)
   {
     type_ = ORIENTATION_CONSTRAINT;
   }
@@ -513,7 +520,9 @@ public:
    *
    * @param [in] model The kinematic model used for constraint evaluation
    */
-  PositionConstraint(const robot_model::RobotModelConstPtr& model) : KinematicConstraint(model), link_model_(NULL)
+  PositionConstraint(const robot_model::RobotModelConstPtr& model) 
+    : KinematicConstraint(model)
+    , has_offset_(false), mobile_frame_(false), link_model_(NULL)
   {
     type_ = POSITION_CONSTRAINT;
   }
