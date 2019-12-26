@@ -299,6 +299,10 @@ SemanticWorld::generatePlacePoses(const object_recognition_msgs::Table& chosen_t
     min_distance_from_edge = cone->radius;
     height_above_table = cone->length / 2.0;
   }
+  else
+  {
+    return place_poses;
+  }
 
   return generatePlacePoses(chosen_table, resolution, height_above_table, delta_height, num_heights,
                             min_distance_from_edge);
