@@ -592,8 +592,10 @@ private:
 ////////////////////////// inline functions follow ////////////////////////////////////////
 
 inline PropDistanceFieldVoxel::PropDistanceFieldVoxel(int distance_square, int negative_distance_squared)
-  : distance_square_(distance_square), negative_distance_square_(negative_distance_squared)
-  , update_direction_(0), negative_update_direction_(0)
+  : distance_square_(distance_square)
+  , negative_distance_square_(negative_distance_squared)
+  , update_direction_(0)
+  , negative_update_direction_(0)
 {
   closest_point_.x() = PropDistanceFieldVoxel::UNINITIALIZED;
   closest_point_.y() = PropDistanceFieldVoxel::UNINITIALIZED;
@@ -604,8 +606,7 @@ inline PropDistanceFieldVoxel::PropDistanceFieldVoxel(int distance_square, int n
 }
 
 inline PropDistanceFieldVoxel::PropDistanceFieldVoxel()
-  : distance_square_(0), negative_distance_square_(0)
-  , update_direction_(0), negative_update_direction_(0)
+  : distance_square_(0), negative_distance_square_(0), update_direction_(0), negative_update_direction_(0)
 {
 }
 

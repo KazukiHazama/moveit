@@ -304,10 +304,7 @@ public:
    *
    */
   IKConstraintSampler(const planning_scene::PlanningSceneConstPtr& scene, const std::string& group_name)
-    : ConstraintSampler(scene, group_name)
-    , ik_timeout_(0.0)
-    , transform_ik_(false)
-    , need_eef_to_ik_tip_transform_(false)
+    : ConstraintSampler(scene, group_name), ik_timeout_(0.0), transform_ik_(false), need_eef_to_ik_tip_transform_(false)
   {
   }
 
