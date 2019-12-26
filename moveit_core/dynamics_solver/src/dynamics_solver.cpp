@@ -66,6 +66,7 @@ inline geometry_msgs::Vector3 transformVector(const Eigen::Affine3d& transform, 
 
 DynamicsSolver::DynamicsSolver(const robot_model::RobotModelConstPtr& robot_model, const std::string& group_name,
                                const geometry_msgs::Vector3& gravity_vector)
+  : num_joints_(0), num_segments_(0), gravity_(0.0)
 {
   robot_model_ = robot_model;
   joint_model_group_ = robot_model_->getJointModelGroup(group_name);
