@@ -779,6 +779,8 @@ void ChompOptimizer::computeJointProperties(int trajectory_point)
   for (int j = 0; j < num_joints_; j++)
   {
     const moveit::core::JointModel* joint_model = state_.getJointModel(joint_names_[j]);
+    if (joint_model == nullptr)
+      continue;
     const moveit::core::RevoluteJointModel* revolute_joint =
         dynamic_cast<const moveit::core::RevoluteJointModel*>(joint_model);
     const moveit::core::PrismaticJointModel* prismatic_joint =
