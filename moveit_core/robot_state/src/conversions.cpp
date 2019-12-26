@@ -153,7 +153,8 @@ static inline void _robotStateToMultiDOFJointState(const RobotState& state, sens
 class ShapeVisitorAddToCollisionObject : public boost::static_visitor<void>
 {
 public:
-  ShapeVisitorAddToCollisionObject(moveit_msgs::CollisionObject* obj) : boost::static_visitor<void>(), obj_(obj)
+  ShapeVisitorAddToCollisionObject(moveit_msgs::CollisionObject* obj)
+    : boost::static_visitor<void>(), obj_(obj), pose_(nullptr)
   {
   }
 
