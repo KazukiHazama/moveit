@@ -221,9 +221,11 @@ void robot_model_loader::RobotModelLoader::loadKinematicsSolvers(
     const std::map<std::string, double>& timeout = kinematics_loader_->getIKTimeout();
     for (std::map<std::string, double>::const_iterator it = timeout.begin(); it != timeout.end(); ++it)
     {
-      if (!model_->hasJointModelGroup(it->first))
-        continue;
       robot_model::JointModelGroup* jmg = model_->getJointModelGroup(it->first);
+      if (jmg == nullptr)
+      {
+        continue;
+      }
       jmg->setDefaultIKTimeout(it->second);
     }
 
@@ -231,9 +233,11 @@ void robot_model_loader::RobotModelLoader::loadKinematicsSolvers(
     const std::map<std::string, unsigned int>& attempts = kinematics_loader_->getIKAttempts();
     for (std::map<std::string, unsigned int>::const_iterator it = attempts.begin(); it != attempts.end(); ++it)
     {
-      if (!model_->hasJointModelGroup(it->first))
-        continue;
       robot_model::JointModelGroup* jmg = model_->getJointModelGroup(it->first);
+      if (jmg == nullptr)
+      {
+        continue;
+      }
       jmg->setDefaultIKAttempts(it->second);
     }
   }
