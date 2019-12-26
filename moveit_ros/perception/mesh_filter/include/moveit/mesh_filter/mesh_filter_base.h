@@ -264,7 +264,7 @@ protected:
   mutable boost::mutex transform_callback_mutex_;
 
   /** \brief indicates whether the filtering loop should stop*/
-  bool stop_;
+  volatile bool stop_;
 
   /** \brief first pass renderer for rendering the mesh*/
   GLRendererPtr mesh_renderer_;
