@@ -332,7 +332,7 @@ private:
   int current_context_;
   std::vector<ros::Time> time_index_;  // used to find current expected trajectory location
   mutable boost::mutex time_index_mutex_;
-  bool execution_complete_;
+  volatile bool execution_complete_;
 
   bool stop_continuous_execution_;
   bool run_continuous_execution_thread_;
