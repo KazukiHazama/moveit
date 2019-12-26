@@ -66,7 +66,7 @@ private:
   void processThread();
 
   OccMapTreePtr tree_;
-  bool running_;
+  volatile bool running_;
   std::size_t max_batch_size_;
   double max_sensor_delta_;
 
