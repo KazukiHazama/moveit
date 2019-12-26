@@ -102,9 +102,19 @@ int main(int argc, char** argv)
     {
       printf("\n");
       const robot_model::JointModelGroup* jmg = robot_model->getJointModelGroup(groups[j]);
+      if (jmg == NULL)
+      {
+        printf("%s: JoingModelGroup is NULL...\n", groups[j].c_str());
+        continue;
+      }
 
       printf("%s: Evaluating FK Random ...\n", groups[j].c_str());
       std::string pname = groups[j] + ":FK Random";
+      if (jmg == NULL)
+      {
+        printf("%s: JoingModelGroup is NULL...\n", groups[j].c_str());
+        continue;
+      }
       for (int i = 0; i < N; ++i)
       {
         moveit::tools::Profiler::Begin(pname);
