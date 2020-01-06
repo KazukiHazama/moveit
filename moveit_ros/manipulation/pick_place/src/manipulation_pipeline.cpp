@@ -40,7 +40,7 @@
 namespace pick_place
 {
 ManipulationPipeline::ManipulationPipeline(const std::string& name, unsigned int nthreads)
-  : name_(name), nthreads_(nthreads), verbose_(false), stop_processing_(true)
+  : name_(name), nthreads_(nthreads), verbose_(false), empty_queue_threads_(0), stop_processing_(true)
 {
   processing_threads_.resize(nthreads, NULL);
 }

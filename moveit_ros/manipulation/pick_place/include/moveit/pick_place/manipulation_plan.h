@@ -88,7 +88,7 @@ struct ManipulationPlan
   EIGEN_MAKE_ALIGNED_OPERATOR_NEW
 
   ManipulationPlan(const ManipulationPlanSharedDataConstPtr& shared_data)
-    : shared_data_(shared_data), processing_stage_(0)
+    : shared_data_(shared_data), processing_stage_(0), id_(0)
   {
   }
 

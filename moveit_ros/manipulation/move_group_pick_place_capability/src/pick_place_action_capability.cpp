@@ -42,7 +42,7 @@
 #include <eigen_conversions/eigen_msg.h>
 
 move_group::MoveGroupPickPlaceAction::MoveGroupPickPlaceAction()
-  : MoveGroupCapability("PickPlaceAction"), pickup_state_(IDLE)
+  : MoveGroupCapability("PickPlaceAction"), pickup_state_(IDLE), place_state_(IDLE)
 {
 }
 
