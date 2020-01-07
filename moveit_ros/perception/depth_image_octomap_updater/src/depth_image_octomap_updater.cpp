@@ -343,16 +343,17 @@ void DepthImageOctomapUpdater::depthImageCallback(const sensor_msgs::ImageConstP
   if (w >= static_cast<int>(x_cache_.size()) || h >= static_cast<int>(y_cache_.size()) || K2_ != px || K5_ != py ||
       K0_ != info_msg->K[0] || K4_ != info_msg->K[4])
   {
+    double inv_fx, inv_fy;
     K2_ = px;
     K5_ = py;
     K0_ = info_msg->K[0];
     K4_ = info_msg->K[4];
 
-    inv_fx_ = 1.0 / K0_;
-    inv_fy_ = 1.0 / K4_;
+    inv_fx = 1.0 / K0_;
+    inv_fy = 1.0 / K4_;
 
     // if there are any NaNs, discard data
-    if (!(px == px && py == py && inv_fx_ == inv_fx_ && inv_fy_ == inv_fy_))
+    if (!(px == px && py == py && inv_fx == inv_fx && inv_fy == inv_fy))
       return;
 
     // Pre-compute some constants
@@ -362,10 +363,10 @@ void DepthImageOctomapUpdater::depthImageCallback(const sensor_msgs::ImageConstP
       y_cache_.resize(h);
 
     for (int x = 0; x < w; ++x)
-      x_cache_[x] = (x - px) * inv_fx_;
+      x_cache_[x] = (x - px) * inv_fx;
 
     for (int y = 0; y < h; ++y)
-      y_cache_[y] = (y - py) * inv_fy_;
+      y_cache_[y] = (y - py) * inv_fy;
   }
 
   const octomap::point3d sensor_origin(map_H_sensor.getOrigin().getX(), map_H_sensor.getOrigin().getY(),
