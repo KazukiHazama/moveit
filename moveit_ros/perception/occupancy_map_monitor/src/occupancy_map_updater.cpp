@@ -39,7 +39,7 @@
 
 namespace occupancy_map_monitor
 {
-OccupancyMapUpdater::OccupancyMapUpdater(const std::string& type) : type_(type)
+OccupancyMapUpdater::OccupancyMapUpdater(const std::string& type) : type_(type), monitor_(nullptr), debug_info_(false)
 {
 }
 
