@@ -665,7 +665,7 @@ void DefaultCollisionsWidget::disableControls(bool disable)
 void DefaultCollisionsWidget::checkedFilterChanged()
 {
   SortFilterProxyModel* m = qobject_cast<SortFilterProxyModel*>(model_);
-  if (!m)
+  if (m != NULL)
     m->setShowAll(collision_checkbox_->checkState() == Qt::Checked);
 }
 
