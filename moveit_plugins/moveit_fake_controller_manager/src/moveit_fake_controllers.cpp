@@ -106,7 +106,7 @@ bool LastPointController::waitForExecution(const ros::Duration&)
 
 ThreadedController::ThreadedController(const std::string& name, const std::vector<std::string>& joints,
                                        const ros::Publisher& pub)
-  : BaseFakeController(name, joints, pub)
+  : BaseFakeController(name, joints, pub), cancel_(false)
 {
 }
 
