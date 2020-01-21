@@ -112,7 +112,9 @@ public:
       // no more centers available
       if (maxDist < std::numeric_limits<double>::epsilon())
         break;
-      centers.push_back(ind);
+      if (ind < (unsigned)data.size()) {
+        centers.push_back(ind);
+      }
     }
 
     const _T& center = data[centers.back()];
