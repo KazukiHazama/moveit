@@ -235,7 +235,7 @@ void RobotState::setToRandomPositions(const JointModelGroup* group)
   // we do not make calls to RobotModel for random number generation because mimic joints
   // could trigger updates outside the state of the group itself
   random_numbers::RandomNumberGenerator& rng = getRandomNumberGenerator();
-  if (group == NULL)
+  if (group == nullptr)
     return;
   setToRandomPositions(group, rng);
 }
