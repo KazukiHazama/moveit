@@ -209,7 +209,7 @@ bool DistanceField::getShapePoints(const shapes::Shape* shape, const Eigen::Affi
   else
   {
     bodies::Body* body = bodies::createBodyFromShape(shape);
-    if (!body)
+    if (body == NULL)
     {
       ROS_ERROR_NAMED("distance_field", "createBodyFromShape() returned a null pointer");
       return false;
@@ -298,7 +298,7 @@ void DistanceField::moveShapeInField(const shapes::Shape* shape, const Eigen::Af
     return;
   }
   bodies::Body* body = bodies::createBodyFromShape(shape);
-  if (!body)
+  if (body == NULL)
   {
     ROS_ERROR_NAMED("distance_field", "createBodyFromShape() returned a null pointer");
     return;
@@ -326,7 +326,7 @@ void DistanceField::moveShapeInField(const shapes::Shape* shape, const geometry_
 void DistanceField::removeShapeFromField(const shapes::Shape* shape, const Eigen::Affine3d& pose)
 {
   bodies::Body* body = bodies::createBodyFromShape(shape);
-  if (!body)
+  if (body == NULL)
   {
     ROS_ERROR_NAMED("distance_field", "createBodyFromShape() returned a null pointer");
     return;
