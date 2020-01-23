@@ -529,6 +529,7 @@ void VirtualJointsWidget::doneEditing()
     if (searched_data->child_link_ == config_data_->getRobotModel()->getRootLinkName())
       emit_frame_notice = true;
     config_data_->srdf_->virtual_joints_.push_back(*searched_data);
+    delete searched_data;
     config_data_->updateRobotModel();
   }
 
