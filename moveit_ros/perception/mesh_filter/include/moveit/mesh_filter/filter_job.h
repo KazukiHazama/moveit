@@ -62,7 +62,7 @@ public:
   inline bool isDone() const;
 
 protected:
-  bool done_;
+  volatile bool done_;
   mutable boost::condition_variable condition_;
   mutable boost::mutex mutex_;
 };

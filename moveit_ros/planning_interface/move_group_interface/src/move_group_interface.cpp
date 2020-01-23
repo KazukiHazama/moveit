@@ -1359,7 +1359,7 @@ private:
   ros::ServiceClient plan_grasps_service_;
   std::unique_ptr<moveit_warehouse::ConstraintsStorage> constraints_storage_;
   std::unique_ptr<boost::thread> constraints_init_thread_;
-  bool initializing_constraints_;
+  volatile bool initializing_constraints_;
 };
 }
 }
