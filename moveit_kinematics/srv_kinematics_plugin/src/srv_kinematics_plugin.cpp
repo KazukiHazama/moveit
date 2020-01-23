@@ -53,7 +53,8 @@ CLASS_LOADER_REGISTER_CLASS(srv_kinematics_plugin::SrvKinematicsPlugin, kinemati
 
 namespace srv_kinematics_plugin
 {
-SrvKinematicsPlugin::SrvKinematicsPlugin() : active_(false)
+SrvKinematicsPlugin::SrvKinematicsPlugin()
+  : active_(false), dimension_(0), joint_model_group_(nullptr), num_possible_redundant_joints_(0)
 {
 }
 
