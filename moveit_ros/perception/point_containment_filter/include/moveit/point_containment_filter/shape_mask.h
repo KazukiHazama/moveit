@@ -94,7 +94,7 @@ public:
 private:
   struct SeeShape
   {
-    SeeShape()
+    SeeShape() : handle(0), volume(0.0)
     {
       body = NULL;
     }

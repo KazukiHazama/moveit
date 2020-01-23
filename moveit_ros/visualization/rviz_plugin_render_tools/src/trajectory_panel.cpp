@@ -39,7 +39,14 @@
 
 namespace moveit_rviz_plugin
 {
-TrajectoryPanel::TrajectoryPanel(QWidget* parent) : Panel(parent)
+TrajectoryPanel::TrajectoryPanel(QWidget* parent)
+  : Panel(parent)
+  , slider_(nullptr)
+  , maximum_label_(nullptr)
+  , minimum_label_(nullptr)
+  , button_(nullptr)
+  , paused_(false)
+  , last_way_point_(0)
 {
 }
 

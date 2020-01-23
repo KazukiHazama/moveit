@@ -57,7 +57,10 @@ public:
       well as used to read the SRDF document when needed. */
   KinematicsPluginLoader(const std::string& robot_description = "robot_description",
                          double default_search_resolution = 0.0)
-    : robot_description_(robot_description), default_search_resolution_(default_search_resolution)
+    : robot_description_(robot_description)
+    , default_search_resolution_(default_search_resolution)
+    , default_solver_timeout_(0.0)
+    , default_ik_attempts_(0)
   {
   }
 

@@ -102,7 +102,7 @@ private:
   std::unique_ptr<LazyFreeSpaceUpdater> free_space_updater_;
 
   std::vector<float> x_cache_, y_cache_;
-  double inv_fx_, inv_fy_, K0_, K2_, K4_, K5_;
+  double K0_, K2_, K4_, K5_;
   std::vector<unsigned int> filtered_labels_;
   ros::WallTime last_depth_callback_start_;
 };

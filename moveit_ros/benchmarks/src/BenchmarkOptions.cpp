@@ -38,7 +38,7 @@
 
 using namespace moveit_ros_benchmarks;
 
-BenchmarkOptions::BenchmarkOptions()
+BenchmarkOptions::BenchmarkOptions() : port_(33829), runs_(10), timeout_(10.0)
 {
 }
 
