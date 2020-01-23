@@ -214,7 +214,8 @@ bool getCollisionSphereCollision(const distance_field::DistanceField* distance_f
 bool getCollisionSphereCollision(const distance_field::DistanceField* distance_field,
                                  const std::vector<CollisionSphere>& sphere_list,
                                  const EigenSTL::vector_Vector3d& sphere_centers, double maximum_value,
-                                 double tolerance, unsigned int num_coll, std::vector<unsigned int>& colls);
+                                 double tolerance, unsigned int num_coll, std::vector<unsigned int>& colls,
+                                 std::vector<double>* depths);
 
 // forward declaration required for friending apparently
 class BodyDecompositionVector;
