@@ -338,7 +338,7 @@ bool planning_scene_monitor::CurrentStateMonitor::waitForCompleteState(const std
 
 bool planning_scene_monitor::CurrentStateMonitor::waitForCurrentState(const std::string& group, double wait_time) const
 {
-  waitForCompleteState(group, wait_time);
+  return waitForCompleteState(group, wait_time);
 }
 
 void planning_scene_monitor::CurrentStateMonitor::jointStateCallback(const sensor_msgs::JointStateConstPtr& joint_state)
