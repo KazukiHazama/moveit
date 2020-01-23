@@ -54,7 +54,15 @@ double getRandomDouble()
 ChompOptimizer::ChompOptimizer(ChompTrajectory* trajectory, const planning_scene::PlanningSceneConstPtr& planning_scene,
                                const std::string& planning_group, const ChompParameters* parameters,
                                const moveit::core::RobotState& start_state)
-  : full_trajectory_(trajectory)
+  : num_joints_(0)
+  , num_vars_free_(0)
+  , num_vars_all_(0)
+  , num_collision_points_(0)
+  , free_vars_start_(0)
+  , free_vars_end_(0)
+  , iteration_(0)
+  , collision_free_iteration_(0)
+  , full_trajectory_(trajectory)
   , kmodel_(planning_scene->getRobotModel())
   , planning_group_(planning_group)
   , parameters_(parameters)
@@ -62,7 +70,15 @@ ChompOptimizer::ChompOptimizer(ChompTrajectory* trajectory, const planning_scene
   , planning_scene_(planning_scene)
   , state_(start_state)
   , start_state_(start_state)
+  , joint_model_group_(nullptr)
+  , hy_robot_(nullptr)
   , initialized_(false)
+  , best_group_trajectory_cost_(0.0)
+  , last_improvement_iteration_(-1)
+  , num_collision_free_iterations_(0)
+  , stochasticity_factor_(1.0)
+  , is_collision_free_(false)
+  , worst_collision_cost_state_(-1)
 {
   std::vector<std::string> cd_names;
   planning_scene->getCollisionDetectorNames(cd_names);

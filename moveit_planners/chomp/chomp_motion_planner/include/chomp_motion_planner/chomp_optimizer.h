@@ -169,7 +169,7 @@ private:
                                               trajectory */
   std::vector<std::vector<int> > point_is_in_collision_;
   bool is_collision_free_;
-  double worst_collision_cost_state_;
+  int worst_collision_cost_state_;
 
   Eigen::MatrixXd smoothness_increments_;
   Eigen::MatrixXd collision_increments_;
