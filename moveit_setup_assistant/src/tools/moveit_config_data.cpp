@@ -53,7 +53,7 @@ namespace fs = boost::filesystem;
 // ******************************************************************************************
 // Constructor
 // ******************************************************************************************
-MoveItConfigData::MoveItConfigData() : config_pkg_generated_timestamp_(0)
+MoveItConfigData::MoveItConfigData() : changes(0), urdf_from_xacro_(false), config_pkg_generated_timestamp_(0)
 {
   // Create an instance of SRDF writer and URDF model for all widgets to share
   srdf_.reset(new srdf::SRDFWriter());

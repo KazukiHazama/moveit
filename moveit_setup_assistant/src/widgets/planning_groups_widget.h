@@ -61,6 +61,7 @@ namespace moveit_setup_assistant
 // Custom Type
 enum GroupType
 {
+  INVALID = -1,
   JOINT,
   LINK,
   CHAIN,
@@ -216,7 +217,7 @@ class PlanGroupType
 {
 public:
   //  explicit PlanGroupType();
-  PlanGroupType()
+  PlanGroupType() : group_(NULL), type_(moveit_setup_assistant::INVALID)
   {
   }
   PlanGroupType(srdf::Model::Group* group, const moveit_setup_assistant::GroupType type);
