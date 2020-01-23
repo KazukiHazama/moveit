@@ -643,7 +643,15 @@ void OrientationConstraint::print(std::ostream& out) const
 }
 
 VisibilityConstraint::VisibilityConstraint(const robot_model::RobotModelConstPtr& model)
-  : KinematicConstraint(model), collision_robot_(new collision_detection::CollisionRobotFCL(model))
+  : KinematicConstraint(model)
+  , collision_robot_(new collision_detection::CollisionRobotFCL(model))
+  , mobile_sensor_frame_(false)
+  , mobile_target_frame_(false)
+  , sensor_view_direction_(0)
+  , cone_sides_(0)
+  , target_radius_(-1.0)
+  , max_view_angle_(0.0)
+  , max_range_angle_(0.0)
 {
   type_ = VISIBILITY_CONSTRAINT;
 }
