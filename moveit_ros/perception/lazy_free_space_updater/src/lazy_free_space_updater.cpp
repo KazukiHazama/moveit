@@ -199,6 +199,10 @@ void LazyFreeSpaceUpdater::processThread()
     delete process_model_cells_set_;
     process_model_cells_set_ = NULL;
   }
+  delete process_occupied_cells_set_;
+  process_occupied_cells_set_ = NULL;
+  delete process_model_cells_set_;
+  process_model_cells_set_ = NULL;
 }
 
 void LazyFreeSpaceUpdater::lazyUpdateThread()
@@ -262,6 +266,12 @@ void LazyFreeSpaceUpdater::lazyUpdateThread()
       occupied_cells_set = NULL;
       batch_size = 0;
     }
+  }
+
+  if (batch_size != 0)
+  {
+    delete occupied_cells_set;
+    delete model_cells_set;
   }
 }
 }
