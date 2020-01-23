@@ -571,8 +571,11 @@ bool JointModelGroup::computeIKIndexBijection(const std::vector<std::string>& ik
     if (it == joint_variables_index_map_.end())
     {
       // skip reported fixed joints
-      if (hasJointModel(ik_jnames[i]) && getJointModel(ik_jnames[i])->getType() == JointModel::FIXED)
+      const JointModel* joint_model = getJointModel(ik_jnames[i]);
+      if ((joint_model != nullptr) && (joint_model->getType() == JointModel::FIXED))
+      {
         continue;
+      }
       ROS_ERROR_NAMED("robot_model.jmg", "IK solver computes joint values for joint '%s' "
                                          "but group '%s' does not contain such a joint.",
                       ik_jnames[i].c_str(), getName().c_str());

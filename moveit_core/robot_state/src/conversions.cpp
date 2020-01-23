@@ -494,6 +494,8 @@ void robotStateToStream(const RobotState& state, std::ostream& out,
   for (std::size_t j = 0; j < joint_groups_ordering.size(); ++j)
   {
     const JointModelGroup* jmg = state.getRobotModel()->getJointModelGroup(joint_groups_ordering[j]);
+    if (jmg == nullptr)
+      continue;
 
     // Output name of variables
     if (include_header)
