@@ -123,16 +123,11 @@ void LazyFreeSpaceUpdater::processThread()
 
     if (!process_occupied_cells_set_ || !process_model_cells_set_)
     {
-      if (process_occupied_cells_set_)
-      {
-        delete process_occupied_cells_set_;
-        process_occupied_cells_set_ = NULL;
-      }
-      if (process_model_cells_set_)
-      {
-        delete process_model_cells_set_;
-        process_model_cells_set_ = NULL;
-      }
+      delete process_occupied_cells_set_;
+      process_occupied_cells_set_ = NULL;
+      delete process_model_cells_set_;
+      process_model_cells_set_ = NULL;
+
       continue;
     }
 
