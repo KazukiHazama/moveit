@@ -55,7 +55,6 @@ OcTreeRender::OcTreeRender(const std::shared_ptr<const octomap::OcTree>& octree,
                            Ogre::SceneNode* parent_node = NULL)
   : octree_(octree), scene_manager_(scene_manager), colorFactor_(0.8)
 {
-  scene_manager_ = scene_manager;
   if (!parent_node)
   {
     parent_node = scene_manager_->getRootSceneNode();
