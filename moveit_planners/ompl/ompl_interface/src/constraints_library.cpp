@@ -406,10 +406,6 @@ ompl_interface::ConstraintsLibrary::addConstraintApproximation(
     const ConstraintApproximationConstructionOptions& options)
 {
   ConstraintApproximationConstructionResults res;
-  res.milestones = 0;
-  res.state_sampling_time = 0.0;
-  res.state_connection_time = 0.0;
-  res.sampling_success_rate = 0.0;
   ModelBasedPlanningContextPtr pc = context_manager_.getPlanningContext(group, options.state_space_parameterization);
   if (pc)
   {
