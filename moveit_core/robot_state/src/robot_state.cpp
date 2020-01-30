@@ -446,9 +446,8 @@ void RobotState::setJointEfforts(const JointModel* joint, const double* effort)
 void RobotState::setJointGroupPositions(const JointModelGroup* group, const double* gstate)
 {
   if (group == nullptr)
-  {
     return;
-  }
+
   const std::vector<int>& il = group->getVariableIndexList();
   if (group->isContiguousWithinState())
     memcpy(position_ + il[0], gstate, group->getVariableCount() * sizeof(double));
@@ -1112,9 +1111,8 @@ Eigen::MatrixXd RobotState::getJacobian(const JointModelGroup* group,
 {
   Eigen::MatrixXd result;
   if (group == nullptr)
-  {
     throw Exception("Unable to compute Jacobian");
-  }
+
   if (!getJacobian(group, group->getLinkModels().back(), reference_point_position, result, false))
     throw Exception("Unable to compute Jacobian");
   return result;

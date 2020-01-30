@@ -110,9 +110,8 @@ int main(int argc, char** argv)
   {
     const robot_model::JointModelGroup* jmg = psm.getRobotModel()->getJointModelGroup(gnames[i]);
     if (jmg == nullptr)
-    {
       continue;
-    }
+
     if (!jmg->isChain())
       continue;
     const std::vector<std::string>& lnames = jmg->getLinkModelNames();
