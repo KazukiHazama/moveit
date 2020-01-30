@@ -90,7 +90,7 @@ template <typename ReturnType>
 class FilterJob : public Job
 {
 public:
-  FilterJob(const boost::function<ReturnType()>& exec) : Job(), exec_(exec)
+  FilterJob(const boost::function<ReturnType()>& exec) : Job(), exec_(exec), result_(ReturnType())
   {
   }
   virtual void execute();
