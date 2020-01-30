@@ -95,7 +95,7 @@ public:
     centers.push_back(std::uniform_int_distribution<size_t>{ 0, data.size() - 1 }(generator_));
     for (unsigned i = 1; i < k; ++i)
     {
-      unsigned ind;
+      unsigned ind = (unsigned)data.size();
       const _T& center = data[centers[i - 1]];
       double maxDist = -std::numeric_limits<double>::infinity();
       for (unsigned j = 0; j < data.size(); ++j)
@@ -112,7 +112,10 @@ public:
       // no more centers available
       if (maxDist < std::numeric_limits<double>::epsilon())
         break;
-      centers.push_back(ind);
+      if (ind < (unsigned)data.size())
+      {
+        centers.push_back(ind);
+      }
     }
 
     const _T& center = data[centers.back()];
