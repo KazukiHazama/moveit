@@ -221,8 +221,7 @@ bool collision_detection::getCollisionSphereCollision(const distance_field::Dist
                                                       const std::vector<CollisionSphere>& sphere_list,
                                                       const EigenSTL::vector_Vector3d& sphere_centers,
                                                       double maximum_value, double tolerance, unsigned int num_coll,
-                                                      std::vector<unsigned int>& colls,
-                                                      std::vector<double>* depths)
+                                                      std::vector<unsigned int>& colls, std::vector<double>* depths)
 {
   colls.clear();
   if (depths)

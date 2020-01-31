@@ -274,10 +274,10 @@ bool CollisionRobotDistanceField::getSelfCollisions(const collision_detection::C
     {
       std::vector<unsigned int> colls;
       std::vector<double> depths;
-      bool coll = getCollisionSphereCollision(
-          gsr->dfce_->distance_field_.get(), *collision_spheres_1, *sphere_centers_1, max_propogation_distance_,
-          collision_tolerance_, std::min(req.max_contacts_per_pair, req.max_contacts - res.contact_count), colls,
-          &depths);
+      bool coll = getCollisionSphereCollision(gsr->dfce_->distance_field_.get(), *collision_spheres_1,
+                                              *sphere_centers_1, max_propogation_distance_, collision_tolerance_,
+                                              std::min(req.max_contacts_per_pair, req.max_contacts - res.contact_count),
+                                              colls, &depths);
       if (coll)
       {
         res.collision = true;
