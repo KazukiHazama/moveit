@@ -249,7 +249,7 @@ void MotionPlanningDisplay::onInitialize()
   text_display_for_start_ = false;
   text_display_scene_node_->attachObject(text_to_display_);
 
-  if (context_ && context_->getWindowManager() && context_->getWindowManager()->getParentWindow())
+  if (context_->getWindowManager() && context_->getWindowManager()->getParentWindow())
   {
     QShortcut* im_reset_shortcut =
         new QShortcut(QKeySequence(Qt::CTRL + Qt::Key_R), context_->getWindowManager()->getParentWindow());
@@ -1184,9 +1184,15 @@ void MotionPlanningDisplay::onRobotModelLoaded()
 
   dynamics_solver_.clear();
   for (std::size_t i = 0; i < groups.size(); ++i)
-    if (getRobotModel()->getJointModelGroup(groups[i])->isChain())
-      dynamics_solver_[groups[i]].reset(
-          new dynamics_solver::DynamicsSolver(getRobotModel(), groups[i], gravity_vector));
+  {
+    const robot_model::JointModelGroup* jmg = getRobotModel()->getJointModelGroup(groups[i]);
+    if (jmg != nullptr)
+    {
+      if (jmg->isChain())
+        dynamics_solver_[groups[i]].reset(
+            new dynamics_solver::DynamicsSolver(getRobotModel(), groups[i], gravity_vector));
+    }
+  }
   addMainLoopJob(boost::bind(&MotionPlanningDisplay::changedPlanningGroup, this));
 }
 

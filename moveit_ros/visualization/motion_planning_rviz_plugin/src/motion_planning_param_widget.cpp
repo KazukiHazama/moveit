@@ -116,6 +116,11 @@ void MotionPlanningParamWidget::changedValue()
   if (!move_group_)
     return;
   rviz::Property* source = qobject_cast<rviz::Property*>(QObject::sender());
+  if (!source)
+  {
+    Q_ASSERT(source);
+    return;
+  }
   std::map<std::string, std::string> params;
   params[source->getName().toStdString()] = source->getValue().toString().toStdString();
   move_group_->setPlannerParams(planner_id_, group_name_, params);

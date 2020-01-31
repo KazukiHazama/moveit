@@ -112,6 +112,12 @@ public:
     }
 
     joint_model_group_ = getRobotModel()->getJointModelGroup(opt.group_name_);
+    if (joint_model_group_ == nullptr)
+    {
+      std::string error = "Group '" + opt.group_name_ + "' get fail.";
+      ROS_FATAL_STREAM_NAMED("move_group_interface", error);
+      throw std::runtime_error(error);
+    }
 
     joint_state_target_.reset(new robot_state::RobotState(getRobotModel()));
     joint_state_target_->setToDefaultValues();
@@ -1208,7 +1214,8 @@ public:
     if (constraints_storage_)
     {
       moveit_warehouse::ConstraintsWithMetadata msg_m;
-      if (constraints_storage_->getConstraints(msg_m, constraint, robot_model_->getName(), opt_.group_name_))
+      bool bb = constraints_storage_->getConstraints(msg_m, constraint, robot_model_->getName(), opt_.group_name_);
+      if ((bb != false) && msg_m)
       {
         path_constraints_.reset(new moveit_msgs::Constraints(static_cast<moveit_msgs::Constraints>(*msg_m)));
         return true;
