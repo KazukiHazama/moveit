@@ -244,7 +244,7 @@ void ompl_interface::OMPLInterface::loadPlannerConfigurations()
           continue;
         }
 
-        double value_d;
+        double value_d = 0.0;
         if (nh_.getParam(group_names[i] + "/" + KNOWN_GROUP_PARAMS[k], value_d))
         {
           // convert to string using no locale
@@ -252,14 +252,14 @@ void ompl_interface::OMPLInterface::loadPlannerConfigurations()
           continue;
         }
 
-        int value_i;
+        int value_i = 0;
         if (nh_.getParam(group_names[i] + "/" + KNOWN_GROUP_PARAMS[k], value_i))
         {
           specific_group_params[KNOWN_GROUP_PARAMS[k]] = std::to_string(value_i);
           continue;
         }
 
-        bool value_b;
+        bool value_b = false;
         if (nh_.getParam(group_names[i] + "/" + KNOWN_GROUP_PARAMS[k], value_b))
         {
           specific_group_params[KNOWN_GROUP_PARAMS[k]] = boost::lexical_cast<std::string>(value_b);
